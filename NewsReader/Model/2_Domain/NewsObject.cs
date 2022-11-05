@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NewsReader.Model.Foundation;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -60,8 +61,8 @@ namespace NewsReader.Model.Domain
 			this.UserAgent = userAgent;
 			this.Newsgroups = newsGroups;
 			this.ContentLanguage = contentLanguage;
-			this.From = from;
-			this.Subject = subject;
+			this.From = Translator.FixStringViaUTF8Hex(from);
+			this.Subject = Translator.FixStringViaUTF8Hex(subject);
 			this.ContentType = contentType;
 			this.ContentTransferEncoding = contentTransferEncoding;
 			if (!lines.Equals("Not Found"))
@@ -82,7 +83,7 @@ namespace NewsReader.Model.Domain
 			this.XRef = xRef;
 
 			//this.Newsgroup = newsgroup;
-			this.Content = content;
+			this.Content = Translator.FixStringViaUTF8Hex(content);
 		}
 
 		#endregion Constructor
