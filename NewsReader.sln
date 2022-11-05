@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsReader", "NewsReader\NewsReader.csproj", "{75961A92-480E-4A02-A3EF-9B0C2FB1EC57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsReaderTests", "NewsReaderTests\NewsReaderTests.csproj", "{2B3539FE-1AF3-44AF-88A9-467DE36D8192}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "NewsBirdSetup", "NewsBirdSetup\NewsBirdSetup.vdproj", "{A5F82858-FD71-4164-8B09-D7FA385E5AC6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75961A92-480E-4A02-A3EF-9B0C2FB1EC57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75961A92-480E-4A02-A3EF-9B0C2FB1EC57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75961A92-480E-4A02-A3EF-9B0C2FB1EC57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75961A92-480E-4A02-A3EF-9B0C2FB1EC57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B3539FE-1AF3-44AF-88A9-467DE36D8192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B3539FE-1AF3-44AF-88A9-467DE36D8192}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B3539FE-1AF3-44AF-88A9-467DE36D8192}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B3539FE-1AF3-44AF-88A9-467DE36D8192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5F82858-FD71-4164-8B09-D7FA385E5AC6}.Debug|Any CPU.ActiveCfg = Debug
+		{A5F82858-FD71-4164-8B09-D7FA385E5AC6}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {20974002-4968-47F9-91F4-843AB3FFFECC}
+	EndGlobalSection
+EndGlobal

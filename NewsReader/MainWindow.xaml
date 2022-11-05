@@ -1,0 +1,141 @@
+﻿<Window x:Class="NewsReader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NewsReader"
+        mc:Ignorable="d"
+        Icon="_img\bird.png"
+        Title="NewsBird" Height="450" Width="800">
+
+    <Window.Resources>
+        <Storyboard x:Key="OpenMenuLeft">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="-150,0,0,0" To="0,0,0,0" DecelerationRatio="0.9" Duration="0:0:0.5"/>
+        </Storyboard>
+
+
+        <Storyboard x:Key="CloseMenuLeft">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="-150,0,0,0" DecelerationRatio="0.9" Duration="0:0:0.5"/>
+        </Storyboard>
+
+        <Storyboard x:Key="OpenMenuRight">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,-150,0" To="0,0,0,0" DecelerationRatio="0.9" Duration="0:0:0.5"/>
+        </Storyboard>
+
+
+        <Storyboard x:Key="CloseMenuRight">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="0,0,-150,0" DecelerationRatio="0.9" Duration="0:0:0.5"/>
+        </Storyboard>
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid
+            Grid.Column="1"
+            Grid.ZIndex="1"
+            >
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border
+                BorderBrush="Black" BorderThickness="2" Background="#FF6E24DE">
+            </Border>
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="BtnShow" Width="40" Height="40" BorderThickness="1" ToolTip="Open Menu" Click="BtnShowLeft_Click" BorderBrush="Transparent" Background="Transparent">
+                    <Image Source="\_img\menu.png" Margin="5"></Image>
+                </Button>
+
+                <Button x:Name="BtnSetup" Width="40" Height="40" BorderThickness="1" ToolTip="Open Setup" Click="BtnShowRight_Click" BorderBrush="Transparent" Background="Transparent" Grid.Column="2">
+                    <Image Source="\_img\settings.png" Margin="5"></Image>
+                </Button>
+
+            </Grid>
+
+            <ContentControl
+                x:Name="CControl"
+                Grid.Row="1">
+
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Content="{Binding QuickLoginText}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="35" FontWeight="SemiBold" Foreground="LightGray"></Label>
+
+                    <Label Content="{Binding QuickLoginDoingText}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25" FontWeight="SemiBold" Foreground="LightGray"  Margin="5"></Label>
+
+                    <Button Content="Remove Data" FontSize="15" Grid.Column="1" Grid.Row="3" Margin="5" Width="125" IsEnabled="{Binding LoginBool}" Click="Btn_RemoveData"></Button>
+
+                </Grid>
+
+            </ContentControl>
+
+        </Grid>
+
+        <StackPanel Panel.ZIndex="10" Name="LeftMenu" Orientation="Vertical" HorizontalAlignment="Left" Margin='-150,0,0,0' Background="#FF6E24DE">
+            <Border  Width="150">
+                <StackPanel>
+                    <Button Name="BtnCloseLeft" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontWeight="Bold" BorderBrush="Black" Click="BtnCloseLeft_Click" Background="Transparent" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" Margin="0,0,0,25" BorderThickness="0,2,0,2">
+                        <Image Source="\_img\arrow_back.png" Margin="5"></Image>
+                    </Button>
+
+                    <Button Name="BtnNewsgroups" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Top" Content="News Groups" FontWeight="Bold" BorderBrush="Black" Click="BtnNewsGroups_Click" Background="Transparent" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" Margin="0,0,0,0" BorderThickness="0,2,0,0"></Button>
+                    <Button Name="BtnArticle" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Top" Content="Articles" FontWeight="Bold" BorderBrush="Black" Click="BtnArticles_Click" Background="Transparent" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" Margin="0,5,0,0" BorderThickness="0,0,0,0"></Button>
+                    <Button Name="BtnPost" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Top" Content="Post" FontWeight="Bold" BorderBrush="Black" Click="BtnPost_Click" Background="Transparent" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" Margin="0,5,0,0" BorderThickness="0,0,0,2"></Button>
+
+                    <Button Name="BtnExit" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Top" Content="Exit" FontWeight="Bold" BorderBrush="Black" Click="BtnExit_Click" Background="Transparent" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" Margin="0,25,0,0" BorderThickness="0,2,0,2"></Button>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <Grid Panel.ZIndex="10" Name="RightMenu" HorizontalAlignment="Right" Margin='0,0,-150,0' Background="#FF6E24DE">
+            <StackPanel>
+                <Button Name="BtnCloseRight" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontWeight="Bold" BorderBrush="Black" Click="BtnCloseRight_Click" Background="Transparent" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" Margin="0,0,0,0" BorderThickness="0,2,0,2">
+                    <Image Source="_img\arrow_forward.png" Margin="5"></Image>
+                </Button>
+                <Border Width="150">
+                    <StackPanel>
+                        <Label Content="Servername:" Height="40" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" Foreground="White" FontSize="12"></Label>
+                        <TextBox Text="" x:Name="TboxServername" HorizontalContentAlignment="Right"></TextBox>
+                        <Label x:Name="LabelConnect" Content="{Binding ConnectText}" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" FontSize="10" Foreground="{Binding ConnectionColor}" FontWeight="SemiBold"></Label>
+                        <Button Name="BtnConnect" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Top" Content="Connect" FontWeight="Bold" BorderBrush="Black" Click="BtnConnect_Click" Background="Transparent" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" Margin="0,5,0,0" BorderThickness="0,2,0,2"></Button>
+                    </StackPanel>
+                </Border>
+                <Border Width="150">
+                    <StackPanel>
+                        <Label Content="Username:" Height="40" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" Foreground="White" FontSize="12" Margin="0,0,0,0"></Label>
+                        <TextBox Text="" x:Name="TboxUsername" HorizontalContentAlignment="Right"></TextBox>
+                        <Label Content="Password:" Height="40" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" Foreground="White" FontSize="12"></Label>
+                        <PasswordBox Password="" x:Name="TboxPassword" HorizontalContentAlignment="Right"></PasswordBox>
+                        <Label x:Name="LabelLogin" Content="{Binding LoginText}" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right" FontSize="10" Foreground="{Binding LoginColor}" FontWeight="SemiBold"></Label>
+                        <Button Name="btnlogin" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Top" Content="Login" FontWeight="Bold" BorderBrush="Black" Click="BtnLogin_Click" Background="Transparent" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" Margin="0,5,0,0" BorderThickness="0,2,0,2"></Button>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <Label x:Name="LabelConnectionStatus" Content="{Binding ConnectionStatusText}" HorizontalContentAlignment="Center" VerticalAlignment="Bottom" BorderBrush="Black"  Grid.Row="1" Foreground="{Binding ConnectionStatusColor}" Background="#FF6E24DE" FontWeight="Bold" BorderThickness="0,2,0,0" ></Label>
+        </Grid>
+        
+    </Grid>
+</Window>
