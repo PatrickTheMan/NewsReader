@@ -114,6 +114,7 @@ namespace NewsReader.ViewModel
 
 		public MainViewModel()
 		{
+			FileHandler.CheckForDataDir();
 
 			try
 			{

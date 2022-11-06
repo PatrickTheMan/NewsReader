@@ -48,7 +48,10 @@ namespace NewsReader.View
 
 			if (item != null && item.IsSelected)
 			{
-				_newsGroupsViewModel.AddSelectedNewsgroup(ListANG.SelectedItem.ToString());
+				if (ListSNG.SelectedItem != null)
+				{
+					_newsGroupsViewModel.AddSelectedNewsgroup(ListANG.SelectedItem.ToString());
+				}
 				_newsGroupsViewModel.ANGSelectedBool = false;
 			}
 		}
@@ -64,26 +67,38 @@ namespace NewsReader.View
 
 			if (item != null && item.IsSelected)
 			{
-				_newsGroupsViewModel.RemoveSelectedNewsgroup(ListSNG.SelectedItem.ToString());
+				if (ListSNG.SelectedItem != null)
+				{
+					_newsGroupsViewModel.RemoveSelectedNewsgroup(ListSNG.SelectedItem.ToString());
+				}
 				_newsGroupsViewModel.SNGSelectedBool = false;
 			}
 		}
 
 		private void Btn_Remove(object sender, RoutedEventArgs e)
 		{
-			_newsGroupsViewModel.RemoveSelectedNewsgroup(ListSNG.SelectedItem.ToString());
+			if (ListSNG.SelectedItem != null)
+			{
+				_newsGroupsViewModel.RemoveSelectedNewsgroup(ListSNG.SelectedItem.ToString());
+			}
 			_newsGroupsViewModel.SNGSelectedBool = false;
 		}
 
 		private void Btn_Add(object sender, RoutedEventArgs e)
 		{
-			_newsGroupsViewModel.AddSelectedNewsgroup(ListANG.SelectedItem.ToString());
+			if (ListANG.SelectedItem != null)
+			{
+				_newsGroupsViewModel.AddSelectedNewsgroup(ListANG.SelectedItem.ToString());
+			}
 			_newsGroupsViewModel.ANGSelectedBool = false;
 		}
 
 		private void Btn_Favorit(object sender, RoutedEventArgs e)
 		{
-			_newsGroupsViewModel.FavoritSelectedNewsgroup(ListSNG.SelectedItem.ToString());
+			if (ListSNG.SelectedItem != null)
+			{
+				_newsGroupsViewModel.FavoritSelectedNewsgroup(ListSNG.SelectedItem.ToString());
+			}
 			_newsGroupsViewModel.SNGSelectedBool = false;
 		}
 

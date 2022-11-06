@@ -12,7 +12,8 @@ namespace NewsReader.Model.FileIO
 	public class FileHandler
 	{
 
-		private static string PATH = AppDomain.CurrentDomain.BaseDirectory;
+		private static string ROOTPATH = AppDomain.CurrentDomain.BaseDirectory;
+		private static string PATH = ROOTPATH + @"Data";
 
 		private static string KEYPATH = "\\keyFile.txt";
 		private static string UPATH = "\\u.txt";
@@ -29,13 +30,32 @@ namespace NewsReader.Model.FileIO
 			{
 				_key = File.ReadAllText(PATH + KEYPATH);
 			}
-			catch (FileNotFoundException)
+			catch (Exception)
 			{
 				WriteKey("qerwtmn wrteynb etyrubv ryutivc tuiyocx yioupxz uopiåzø ipåoaøæ oåapsæl pasådlk åsdafkj adfsgjh sfgdhhg dghfjgf fhjgkfd gjkhlds hkljæsa jlækøaå kæølzåp løzæxpo æzxøcoi øxczviu zcvxbuy xvbcnyt cbnvmtr vnmbqre bmqnwew nqwmewq mweqrqm 1342509 2453698 3564787 4675876 5786965 6897054 7908143 8019232 9120321 0231410");
 				_key = File.ReadAllText(PATH + KEYPATH);
 			}
 
 			return _key;
+		}
+
+		public static void CheckForDataDir()
+		{
+			bool found = false;
+
+			foreach (var item in Directory.GetFiles(ROOTPATH))
+			{
+				if (item.Equals(PATH))
+				{
+					found = true;
+				}
+			}
+
+			if (!found)
+			{
+				Directory.CreateDirectory(PATH);
+			}
+
 		}
 
 		public static void WriteKey(string key)
@@ -48,7 +68,7 @@ namespace NewsReader.Model.FileIO
 			try
 			{
 				return File.ReadAllText(PATH + SPATH);
-			} catch (FileNotFoundException)
+			} catch (Exception)
 			{
 				WriteS("");
 				return File.ReadAllText(PATH + SPATH);
@@ -67,7 +87,7 @@ namespace NewsReader.Model.FileIO
 			{
 				return File.ReadAllText(PATH + UPATH);
 			}
-			catch (FileNotFoundException)
+			catch (Exception)
 			{
 				WriteU("");
 				return File.ReadAllText(PATH + UPATH);
@@ -89,7 +109,7 @@ namespace NewsReader.Model.FileIO
 			{
 				return CryptionHandler.Decrypt(_key, File.ReadAllText(PATH + PPATH));
 			}
-			catch (FileNotFoundException)
+			catch (Exception)
 			{
 				WriteP("");
 				return CryptionHandler.Decrypt(_key, File.ReadAllText(PATH + PPATH));
@@ -121,7 +141,7 @@ namespace NewsReader.Model.FileIO
 						found = true;
 					}
 				}
-			} catch (DirectoryNotFoundException)
+			} catch (Exception)
 			{
 				Directory.CreateDirectory(PATH + FAVPATH);
 			}

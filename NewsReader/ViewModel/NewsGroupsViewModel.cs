@@ -235,7 +235,11 @@ namespace NewsReader.ViewModel
 			App.Current.Dispatcher.Invoke(() => { SelectedNewsgroups.Clear(); });
 			foreach (var item in GlobalInformationBuilderSingleton.Instance.GetGlobalInformation().GetFavoritNewsGroupList().GetList())
 			{
-				App.Current.Dispatcher.Invoke(() => { SelectedNewsgroups.Add(item+"*"); });
+				App.Current.Dispatcher.Invoke(() => { SelectedNewsgroups.Add(item + "*"); });
+			}
+			foreach (var item in GlobalInformationBuilderSingleton.Instance.GetGlobalInformation().GetSelectedNewsGroupList().GetList())
+			{
+				App.Current.Dispatcher.Invoke(() => { if (!SelectedNewsgroups.Contains(item + "*")) { SelectedNewsgroups.Add(item); } });
 			}
 
 			foreach (var item in GlobalInformationBuilderSingleton.Instance.GetGlobalInformation().GetNewsGroupList().GetList())
@@ -253,6 +257,11 @@ namespace NewsReader.ViewModel
 			else
 			{
 				TextANG = "Empty";
+			}
+
+			if (SelectedNewsgroups.Contains("*"))
+			{
+				SelectedNewsgroups.Remove("*");
 			}
 
 			AmountANG = Newsgroups.Count;

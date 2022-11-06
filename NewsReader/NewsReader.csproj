@@ -145,11 +145,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Model\4_FileIO\Files\fav\patr7983%40easv365.dk.txt" />
-    <Resource Include="Model\4_FileIO\Files\keyFile.txt" />
-    <Resource Include="Model\4_FileIO\Files\p.txt" />
-    <Resource Include="Model\4_FileIO\Files\s.txt" />
-    <Resource Include="Model\4_FileIO\Files\u.txt" />
     <Resource Include="_img\arrow_back.png" />
     <Resource Include="_img\arrow_forward.png" />
     <Resource Include="_img\bird.png" />
