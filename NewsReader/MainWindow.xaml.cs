@@ -38,7 +38,7 @@ namespace NewsReader
 
 			this._mainViewModel = MainViewModelSingleton.Instance;
 			this.DataContext = _mainViewModel;
-			
+
 			InitializeComponent();
 
 		}

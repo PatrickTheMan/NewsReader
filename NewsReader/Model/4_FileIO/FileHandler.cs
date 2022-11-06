@@ -1,6 +1,7 @@
 ﻿using NewsReader.Model.Foundation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace NewsReader.Model.FileIO
 	public class FileHandler
 	{
 
-		private static string PATH = "C:\\Users\\patri\\source\\repos\\NewsReader\\NewsReader\\Model\\4_FileIO\\Files";
+		private static string PATH = AppDomain.CurrentDomain.BaseDirectory;
 
 		private static string KEYPATH = "\\keyFile.txt";
 		private static string UPATH = "\\u.txt";
@@ -24,12 +25,35 @@ namespace NewsReader.Model.FileIO
 
 		public static string ReadKey()
 		{
-			_key = File.ReadAllText(PATH + KEYPATH);
+			try
+			{
+				_key = File.ReadAllText(PATH + KEYPATH);
+			}
+			catch (FileNotFoundException)
+			{
+				WriteKey("qerwtmn wrteynb etyrubv ryutivc tuiyocx yioupxz uopiåzø ipåoaøæ oåapsæl pasådlk åsdafkj adfsgjh sfgdhhg dghfjgf fhjgkfd gjkhlds hkljæsa jlækøaå kæølzåp løzæxpo æzxøcoi øxczviu zcvxbuy xvbcnyt cbnvmtr vnmbqre bmqnwew nqwmewq mweqrqm 1342509 2453698 3564787 4675876 5786965 6897054 7908143 8019232 9120321 0231410");
+				_key = File.ReadAllText(PATH + KEYPATH);
+			}
+
 			return _key;
 		}
+
+		public static void WriteKey(string key)
+		{
+			File.WriteAllText(PATH + KEYPATH, key);
+		}
+
 		public static string ReadS()
 		{
-			return File.ReadAllText(PATH + SPATH);
+			try
+			{
+				return File.ReadAllText(PATH + SPATH);
+			} catch (FileNotFoundException)
+			{
+				WriteS("");
+				return File.ReadAllText(PATH + SPATH);
+			}
+			
 		}
 
 		public static void WriteS(string s)
@@ -39,7 +63,15 @@ namespace NewsReader.Model.FileIO
 
 		public static string ReadU()
 		{
-			return File.ReadAllText(PATH + UPATH);
+			try
+			{
+				return File.ReadAllText(PATH + UPATH);
+			}
+			catch (FileNotFoundException)
+			{
+				WriteU("");
+				return File.ReadAllText(PATH + UPATH);
+			}
 		}
 
 		public static void WriteU(string u)
@@ -53,8 +85,16 @@ namespace NewsReader.Model.FileIO
 			{
 				ReadKey();
 			}
+			try
+			{
+				return CryptionHandler.Decrypt(_key, File.ReadAllText(PATH + PPATH));
+			}
+			catch (FileNotFoundException)
+			{
+				WriteP("");
+				return CryptionHandler.Decrypt(_key, File.ReadAllText(PATH + PPATH));
+			}
 
-			return CryptionHandler.Decrypt(_key, File.ReadAllText(PATH + PPATH));
 		}
 
 		public static void WriteP(string p)
@@ -72,13 +112,20 @@ namespace NewsReader.Model.FileIO
 			bool found = false;
 			List<string> favoritNewsGroups = new List<string>();
 
-			foreach (var item in Directory.GetFiles(PATH + FAVPATH))
+			try
 			{
-				if (item.Equals(PATH + FAVPATH + username + ".txt"))
+				foreach (var item in Directory.GetFiles(PATH + FAVPATH))
 				{
-					found = true;
+					if (item.Equals(PATH + FAVPATH + username + ".txt"))
+					{
+						found = true;
+					}
 				}
+			} catch (DirectoryNotFoundException)
+			{
+				Directory.CreateDirectory(PATH + FAVPATH);
 			}
+			
 			if (!found)
 			{
 				return new List<string>();
